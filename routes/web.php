@@ -13,6 +13,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.'], function () {
+    Route::get('/', ['as' => 'index', 'uses' => 'DashboardController@index']);
+    Route::get('/login', function () {
+        return view('pages.login');
+    });
+});
+
+
 Route::get('/', function () {
-    return view('welcome');
+    return view('pages.welcome');
 });
