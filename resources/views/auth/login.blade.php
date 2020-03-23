@@ -5,39 +5,39 @@
         <div class="card-body login-card-body">
             <p class="login-box-msg">Sign in to start your session</p>
 
-            <form action="/" method="post">
+            <form action="{{ route('dashboard.login') }}" method="post">
                 @csrf
                 <div class="input-group mb-3">
                     <input type="email" id="email" value="{{ old('email') }}" name="email"
-                           class="form-control {{ $errors->has('email') ?? 'is-invalid' }}"
+                           class="form-control @error('email') is-invalid @enderror"
                            placeholder="Email">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-envelope"></span>
                         </div>
                     </div>
-                    @if($errors->has('email'))
-                        <span id="email-error" style=""
-                              class="error invalid-feedback">{{ $errors->first('email') }}</span>
-                    @endif
+                    @error('email')
+                    <span id="email-error" style=""
+                          class="error invalid-feedback">{{ $message }}</span>
+                    @enderror
                 </div>
                 <div class="input-group mb-3">
                     <input type="password" id="password" value="{{ old('password') }}"
-                           class="form-control {{ $errors->has('email') ?? 'is-invalid' }}" placeholder="Password">
+                           class="form-control @error('password') is-invalid @enderror" placeholder="Password">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-lock"></span>
                         </div>
                     </div>
-                    @if($errors->has('password'))
-                        <span id="password-error" style=""
-                              class="error invalid-feedback">{{ $errors->first('password') }}</span>
-                    @endif
+                    @error('password')
+                    <span id="password-error" style=""
+                          class="error invalid-feedback">{{ $message }}</span>
+                    @enderror
                 </div>
                 <div class="row">
                     <div class="col-8">
                         <div class="icheck-primary">
-                            <input type="checkbox" id="remember" name="remember" {{ old('remember') ?? 'checked' }}>
+                            <input type="checkbox" id="remember" name="remember" {{ old('remember') ? 'checked' : '' }}>
                             <label for="remember">
                                 Remember Me
                             </label>

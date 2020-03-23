@@ -15,12 +15,16 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.'], function () {
     Route::get('/', ['as' => 'index', 'uses' => 'DashboardController@index']);
-    Route::get('/login', function () {
+    /*Route::get('/login', function () {
         return view('pages.login');
-    });
+    });*/
+    Auth::routes();
 });
 
 
 Route::get('/', function () {
     return view('pages.welcome');
 });
+
+
+Route::get('/home', 'HomeController@index')->name('home');
