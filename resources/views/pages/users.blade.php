@@ -34,7 +34,7 @@
                             <table id="usersDataTable" class="table table-bordered table-striped">
                                 <thead>
                                 <tr>
-                                    <th>User ID</th>
+                                    <th>ID</th>
                                     <th>Name</th>
                                     <th>Email</th>
                                     <th>User Type</th>

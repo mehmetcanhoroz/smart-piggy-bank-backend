@@ -43,6 +43,7 @@
                     <a href="/" class="nav-link">
                         <i class="nav-icon fas fa-chart-bar"></i>
                         <p>Statistics</p>
+                        <span class="badge badge-info right">{{ $totalSaving }} &#8378;</span>
                     </a>
                 </li>
                 <li class="nav-item">

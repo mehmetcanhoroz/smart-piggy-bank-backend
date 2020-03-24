@@ -35,7 +35,7 @@
                             <table id="usersDataTable" class="table table-bordered table-striped">
                                 <thead>
                                 <tr>
-                                    <th>Trans ID</th>
+                                    <th>ID</th>
                                     <th>Date</th>
                                     <th>Coins</th>
                                     <th>User</th>
