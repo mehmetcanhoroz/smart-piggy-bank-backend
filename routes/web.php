@@ -14,10 +14,32 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.'], function () {
-    Route::get('/', ['as' => 'index', 'uses' => 'DashboardController@index']);
-    /*Route::get('/login', function () {
-        return view('pages.login');
-    });*/
+    Route::middleware(['auth'])->group(function () {
+        Route::get('/', ['as' => 'index', 'uses' => 'DashboardController@index']);
+        //Route::get('/users', ['as' => 'users', 'uses' => 'UserController@index']);
+        //Route::get('/transactions', ['as' => 'transactions', 'uses' => 'TransactionController@index']);
+
+        Route::group(['prefix' => 'transactions', 'as' => 'transactions.'], function () {
+            Route::middleware(['auth'])->group(function () {
+                Route::get('/', ['as' => 'index', 'uses' => 'TransactionController@index']);
+                Route::delete('/', ['as' => 'delete', 'uses' => 'TransactionController@delete']);
+            });
+        });
+
+        Route::group(['prefix' => 'transaction_proofs', 'as' => 'transaction_proofs.'], function () {
+            Route::middleware(['auth'])->group(function () {
+                Route::get('/', ['as' => 'index', 'uses' => 'TransactionProofController@index']);
+            });
+        });
+
+        Route::group(['prefix' => 'users', 'as' => 'users.'], function () {
+            Route::middleware(['auth'])->group(function () {
+                Route::get('/', ['as' => 'index', 'uses' => 'UserController@index']);
+                Route::delete('/', ['as' => 'delete', 'uses' => 'UserController@delete']);
+            });
+        });
+    });
+
     Auth::routes();
 });
 
@@ -25,6 +47,3 @@ Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.'], function () {
 Route::get('/', function () {
     return view('pages.welcome');
 });
-
-
-Route::get('/home', 'HomeController@index')->name('home');

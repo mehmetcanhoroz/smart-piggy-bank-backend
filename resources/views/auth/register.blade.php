@@ -36,7 +36,8 @@
                     @enderror
                 </div>
                 <div class="input-group mb-3">
-                    <input type="password" id="password" value="{{ old('password') }}" placeholder="{{ __('Password') }}"
+                    <input type="password" id="password" value="{{ old('password') }}"
+                           placeholder="{{ __('Password') }}"
                            class="form-control @error('password') is-invalid @enderror" name="password"
                            autocomplete="new-password">
                     <div class="input-group-append">
@@ -50,7 +51,7 @@
                     @enderror
                 </div>
                 <div class="input-group mb-3">
-                    <input type="password" id="password-confirmation"
+                    <input type="password" id="password-confirmation" name="password_confirmation"
                            class="form-control" placeholder="{{ __('Confirmation Password') }}"
                            autocomplete="new-password">
                     <div class="input-group-append">

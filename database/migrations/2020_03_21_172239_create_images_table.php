@@ -17,7 +17,7 @@ class CreateImagesTable extends Migration
             $table->id();
             $table->longText('image');
             //$table->foreign('transaction_id')->references('id')->on('transactions');
-            $table->foreignId('transaction_id')->constrained();
+            $table->foreignId('transaction_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

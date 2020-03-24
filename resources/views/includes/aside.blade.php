@@ -1,9 +1,9 @@
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="/" class="brand-link">
+    <a href="{{ route('dashboard.index') }}" class="brand-link">
         <img src="{{ asset('img/piggy-bank-icon.png') }}"
-             alt="AdminLTE Logo"
+             alt="Smart Piggy Bank"
              class="brand-image img-circle elevation-3"
              style="opacity: .8">
         <span class="brand-text font-weight-light">Piggy Bank</span>
@@ -14,10 +14,12 @@
         <!-- Sidebar user (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-                <img src="{{ asset('img/user.png') }}" class="img-circle elevation-2" alt="User Image">
+                <img
+                    src="{{ \Illuminate\Support\Facades\Auth::user()->is_parent ? asset('img/user.png') : asset('img/child.png') }}"
+                    class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">Alexander Pierce</a>
+                <a href="#" class="d-block">{{ \Illuminate\Support\Facades\Auth::user()->name }}</a>
             </div>
         </div>
 
@@ -44,21 +46,21 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="/" class="nav-link">
+                    <a href="{{ route('dashboard.users.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-users"></i>
                         <p>Users</p>
                         <span class="badge badge-primary right">{{ $userCount }}</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="/" class="nav-link">
+                    <a href="{{ route('dashboard.transactions.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-money-bill-alt"></i>
                         <p>Transactions</p>
                         <span class="badge badge-success right">{{ $transactionCount }}</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="/" class="nav-link">
+                    <a href="{{ route('dashboard.transaction_proofs.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-image"></i>
                         <p>Transaction Proofs</p>
                     </a>
@@ -71,10 +73,16 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="/" class="nav-link">
+                    <a class="nav-link" href="{{ route('dashboard.logout') }}"
+                       onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                         <i class="nav-icon fas fa-sign-out-alt"></i>
                         <p>Logout</p>
                     </a>
+
+                    <form id="logout-form" action="{{ route('dashboard.logout') }}" method="POST"
+                          style="display: none;">
+                        @csrf
+                    </form>
                 </li>
             </ul>
         </nav>

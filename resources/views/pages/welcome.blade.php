@@ -8,14 +8,15 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Stylish Portfolio - Start Bootstrap Template</title>
+    <title>Smart Piggy Bank</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="{{ asset('welcome/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="{{ asset('welcome/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic"
+          rel="stylesheet" type="text/css">
     <link href="{{ asset('welcome/vendor/simple-line-icons/css/simple-line-icons.css') }}" rel="stylesheet">
 
     <!-- Custom CSS -->
@@ -32,8 +33,12 @@
         <h3 class="mb-5">
             <em>Saving money with tech</em>
         </h3>
-        <a class="btn btn-success btn-xl js-scroll-trigger" href="#about">Login</a>
-        <a class="btn btn-danger btn-xl js-scroll-trigger" href="#about">Register</a>
+        @guest
+            <a class="btn btn-primary btn-xl js-scroll-trigger" href="{{ route('dashboard.login') }}">Login</a>
+            <a class="btn btn-danger btn-xl js-scroll-trigger" href="{{ route('dashboard.register') }}">Register</a>
+        @else
+            <a class="btn btn-success btn-xl js-scroll-trigger" href="{{ route('dashboard.index') }}">Dashboard</a>
+        @endguest
     </div>
     <div class="overlay"></div>
 </header>

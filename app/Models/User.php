@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -35,5 +34,26 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'is_parent' => 'boolean',
     ];
+
+    public function transactions()
+    {
+        return $this->hasMany(Transaction::class);
+    }
+
+    public function coins()
+    {
+        return $this->hasManyThrough(Coin::class, Transaction::class);
+    }
+
+    public function transactionProofs()
+    {
+        return $this->hasManyThrough(Image::class, Transaction::class);
+    }
+
+    public function getTotalSavingAttribute()
+    {
+        return $this->coins()->sum('value');
+    }
 }

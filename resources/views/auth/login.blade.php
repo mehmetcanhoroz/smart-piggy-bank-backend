@@ -22,7 +22,7 @@
                     @enderror
                 </div>
                 <div class="input-group mb-3">
-                    <input type="password" id="password" value="{{ old('password') }}"
+                    <input type="password" id="password" value="{{ old('password') }}" name="password"
                            class="form-control @error('password') is-invalid @enderror" placeholder="Password">
                     <div class="input-group-append">
                         <div class="input-group-text">
@@ -55,7 +55,7 @@
                 <a href="forgot-password.html">I forgot my password</a>
             </p>
             <p class="mb-0">
-                <a href="register.html" class="text-center">Register a new membership</a>
+                <a href="{{ route('dashboard.register') }}" class="text-center">Register a new membership</a>
             </p>
         </div>
         <!-- /.login-card-body -->
