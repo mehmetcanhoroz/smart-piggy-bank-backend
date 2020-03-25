@@ -41,7 +41,9 @@
                                     <th>Transaction</th>
                                     <th>Coin</th>
                                     <th>Saving</th>
-                                    <th>Actions</th>
+                                    @if(\Illuminate\Support\Facades\Auth::user()->isParent)
+                                        <th>Actions</th>
+                                    @endif
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -53,18 +55,21 @@
                                         <td>
                                             <img
                                                 src="{{ $user->is_parent ? asset('img/user.png') : asset('img/child.png') }}"
-                                                class="img-circle elevation-2" alt="User Image" width="35"> {{ $user->is_parent ? 'Parent' : 'Child' }}</td>
+                                                class="img-circle elevation-2" alt="User Image"
+                                                width="35"> {{ $user->is_parent ? 'Parent' : 'Child' }}</td>
                                         <td>{{ $user->transactions->count() }}</td>
                                         <td>{{ $user->coins->count() }}</td>
                                         <td>{{ $user->total_saving }} &#8378;</td>
-                                        <td>
-                                            <div class="btn-group">
-                                                <button type="button" class="btn btn-warning text-white"><i
-                                                        class="fas fa-edit"></i></button>
-                                                <button type="button" class="btn btn-danger"><i
-                                                        class="fas fa-trash"></i></button>
-                                            </div>
-                                        </td>
+                                        @if(\Illuminate\Support\Facades\Auth::user()->isParent)
+                                            <td>
+                                                <div class="btn-group">
+                                                    <button type="button" class="btn btn-warning text-white"><i
+                                                            class="fas fa-edit"></i></button>
+                                                    <button type="button" class="btn btn-danger"><i
+                                                            class="fas fa-trash"></i></button>
+                                                </div>
+                                            </td>
+                                        @endif
                                     </tr>
                                 @endforeach
                                 </tbody>

@@ -33,20 +33,17 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-sm-2">
-                                    <a href="https://via.placeholder.com/1200/FFFFFF.png?text=1" data-toggle="lightbox"
-                                       data-title="sample 1 - white" data-gallery="gallery">
-                                        <img src="https://via.placeholder.com/300/FFFFFF?text=1" class="img-fluid mb-2"
-                                             alt="white sample"/>
-                                    </a>
-                                </div>
-                                <div class="col-sm-2">
-                                    <a href="https://via.placeholder.com/1200/000000.png?text=2" data-toggle="lightbox"
-                                       data-title="sample 2 - black" data-gallery="gallery">
-                                        <img src="https://via.placeholder.com/300/000000?text=2" class="img-fluid mb-2"
-                                             alt="black sample"/>
-                                    </a>
-                                </div>
+                                @foreach($transactionProofs as $proof)
+                                    <div class="col-sm-2">
+                                        <a href="{{ $proof->image }}"
+                                           data-toggle="lightbox"
+                                           data-title="Transaction Proof - {{ $proof->transaction_id }}" data-gallery="gallery">
+                                            <img src="{{ $proof->image }}"
+                                                 class="img-fluid mb-2"
+                                                 alt="Proof Image"/>
+                                        </a>
+                                    </div>
+                                @endforeach
                             </div>
                         </div>
                         <!-- /.card-body -->
@@ -67,7 +64,7 @@
 
     <script>
         $(function () {
-            $(document).on('click', '[data-toggle="lightbox"]', function(event) {
+            $(document).on('click', '[data-toggle="lightbox"]', function (event) {
                 event.preventDefault();
                 $(this).ekkoLightbox({
                     alwaysShowClose: true

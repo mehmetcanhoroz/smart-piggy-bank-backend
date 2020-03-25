@@ -16,31 +16,36 @@ use Illuminate\Support\Facades\Route;
 Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.'], function () {
     Route::middleware(['auth'])->group(function () {
         Route::get('/', ['as' => 'index', 'uses' => 'DashboardController@index']);
-        //Route::get('/users', ['as' => 'users', 'uses' => 'UserController@index']);
-        //Route::get('/transactions', ['as' => 'transactions', 'uses' => 'TransactionController@index']);
 
         Route::group(['prefix' => 'transactions', 'as' => 'transactions.'], function () {
-            Route::middleware(['auth'])->group(function () {
+            Route::group([], function () {
                 Route::get('/', ['as' => 'index', 'uses' => 'TransactionController@index']);
-                Route::delete('/', ['as' => 'delete', 'uses' => 'TransactionController@delete']);
+                Route::delete('/{id}', ['as' => 'delete', 'uses' => 'TransactionController@delete'])->where(['id' => '[0-9]+']);
             });
         });
 
         Route::group(['prefix' => 'transaction_proofs', 'as' => 'transaction_proofs.'], function () {
-            Route::middleware(['auth'])->group(function () {
+            Route::group([], function () {
                 Route::get('/', ['as' => 'index', 'uses' => 'TransactionProofController@index']);
             });
         });
 
         Route::group(['prefix' => 'users', 'as' => 'users.'], function () {
-            Route::middleware(['auth'])->group(function () {
+            Route::group([], function () {
                 Route::get('/', ['as' => 'index', 'uses' => 'UserController@index']);
                 Route::delete('/', ['as' => 'delete', 'uses' => 'UserController@delete']);
+            });
+        });
+
+        Route::group(['prefix' => 'statistics', 'as' => 'statistics.'], function () {
+            Route::group([], function () {
+                Route::get('/', ['as' => 'index', 'uses' => 'StatisticController@index']);
             });
         });
     });
 
     Auth::routes();
+    Route::get('/test', ['as' => 'test', 'uses' => 'UserController@test']);
 });
 
 

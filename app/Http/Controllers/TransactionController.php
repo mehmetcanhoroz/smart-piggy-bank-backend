@@ -4,23 +4,23 @@ namespace App\Http\Controllers;
 
 use App\Models\Transaction;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Request;
 
 class TransactionController extends Controller
 {
     public function index()
     {
-        $transactions = Transaction::with(['user', 'coins'])->get();
+        $transactions = Transaction::ofLoggedUser()->with(['user', 'coins'])->get();
         return view('pages.transactions')->with(['transactions' => $transactions]);
     }
 
-    public function delete(Request $request)
+    public function delete($id)
     {
+        //dd($request);
         $transaction = null;
         if (Auth::user()->isParent) {
-            $transaction = Transaction::find($request->id);
+            $transaction = Transaction::find($id);
         } else {
-            $transaction = Transaction::where(['user_id' => Auth::id(), 'id' => $request->id]);
+            $transaction = Transaction::where(['user_id' => Auth::id(), 'id' => $id])->first();
         }
         if ($transaction) {
             $transaction->delete();

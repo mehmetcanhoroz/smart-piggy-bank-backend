@@ -8,7 +8,7 @@ class TransactionProofController extends Controller
 {
     public function index()
     {
-        $transactionProofs = Image::all();
+        $transactionProofs = Image::ofLoggedUser()->get();
         return view('pages.transaction_proofs')->with(['transactionProofs' => $transactionProofs]);
     }
 }

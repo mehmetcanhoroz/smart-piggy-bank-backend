@@ -68,8 +68,10 @@
                                         <td>{{ $transaction->value }} &#8378;</td>
                                         <td>
                                             <div class="btn-group">
-                                                <button type="button" class="btn btn-danger"><i
-                                                        class="fas fa-trash"></i></button>
+                                                <button type="button" class="btn btn-danger"
+                                                        onclick="deleteIt('{{ route('dashboard.transactions.delete', $transaction->id) }}')">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
                                             </div>
                                         </td>
                                     </tr>

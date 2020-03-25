@@ -3,9 +3,25 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Transaction extends Model
 {
+    public function scopeOfLoggedUser($query, $arg = [])
+    {
+        $user = Auth::user();
+        if ($user) {
+            //return $user;
+            if (!($user->is_parent == 1)) {
+                //dd('parent degil');
+                $query->whereNested(function ($q) use ($user) {
+                    $q->where('user_id', $user->id);
+                });
+
+            }
+        }
+    }
+
     public function coins()
     {
         return $this->hasMany(Coin::class)->orderByDesc('value');

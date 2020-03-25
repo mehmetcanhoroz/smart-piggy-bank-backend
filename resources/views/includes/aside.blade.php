@@ -19,7 +19,7 @@
                     class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">{{ \Illuminate\Support\Facades\Auth::user()->name }}</a>
+                <span class="d-block text-white">{{ \Illuminate\Support\Facades\Auth::user()->name }}</span>
             </div>
         </div>
 
@@ -40,7 +40,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="/" class="nav-link">
+                    <a href="{{ route('dashboard.statistics.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-chart-bar"></i>
                         <p>Statistics</p>
                         <span class="badge badge-info right">{{ $totalSaving }} &#8378;</span>
