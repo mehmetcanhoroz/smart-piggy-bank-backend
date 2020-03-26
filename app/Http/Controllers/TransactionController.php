@@ -17,7 +17,7 @@ class TransactionController extends Controller
     {
         //dd($request);
         $transaction = null;
-        if (Auth::user()->isParent) {
+        if (Auth::user()->is_parent) {
             $transaction = Transaction::find($id);
         } else {
             //$transaction = Transaction::where(['user_id' => Auth::id(), 'id' => $id])->first();

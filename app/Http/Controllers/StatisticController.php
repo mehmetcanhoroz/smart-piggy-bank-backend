@@ -19,8 +19,8 @@ class StatisticController extends Controller
             ->groupBy('day_transaction')
             ->get();
 
-        foreach ($allCountByDay as $day) {
-            $allCountByDay->get($day->day_transaction)->day_transaction = $days[$day->day_transaction];
+        for ($i = 0; $i < sizeof($allCountByDay); $i++) {
+            $allCountByDay->get($i)->day_transaction = $days[$allCountByDay->get($i)->day_transaction];
         }
 
         $allCountByMonth = DB::table("transactions")
