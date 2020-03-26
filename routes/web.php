@@ -33,7 +33,7 @@ Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.'], function () {
         Route::group(['prefix' => 'users', 'as' => 'users.'], function () {
             Route::group([], function () {
                 Route::get('/', ['as' => 'index', 'uses' => 'UserController@index']);
-                Route::delete('/', ['as' => 'delete', 'uses' => 'UserController@delete']);
+                Route::delete('/{id}', ['as' => 'delete', 'uses' => 'UserController@delete'])->middleware(['IsParent']);
             });
         });
 

@@ -41,7 +41,7 @@
                                     <th>Transaction</th>
                                     <th>Coin</th>
                                     <th>Saving</th>
-                                    @if(\Illuminate\Support\Facades\Auth::user()->isParent)
+                                    @if(\Illuminate\Support\Facades\Auth::user()->is_parent)
                                         <th>Actions</th>
                                     @endif
                                 </tr>
@@ -60,12 +60,14 @@
                                         <td>{{ $user->transactions->count() }}</td>
                                         <td>{{ $user->coins->count() }}</td>
                                         <td>{{ $user->total_saving }} &#8378;</td>
-                                        @if(\Illuminate\Support\Facades\Auth::user()->isParent)
+                                        @if(\Illuminate\Support\Facades\Auth::user()->is_parent)
                                             <td>
                                                 <div class="btn-group">
                                                     <button type="button" class="btn btn-warning text-white"><i
                                                             class="fas fa-edit"></i></button>
-                                                    <button type="button" class="btn btn-danger"><i
+                                                    <button type="button" class="btn btn-danger"
+                                                            onclick="deleteIt('{{ route('dashboard.users.delete', $user->id) }}')">
+                                                        <i
                                                             class="fas fa-trash"></i></button>
                                                 </div>
                                             </td>

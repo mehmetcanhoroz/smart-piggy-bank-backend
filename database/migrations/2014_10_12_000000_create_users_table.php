@@ -23,6 +23,16 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->timestamps();
         });
+
+
+        \Illuminate\Support\Facades\DB::table('users')->insert(
+            array(
+                'name' => 'Parent User',
+                'email' => 'admin@gmail.com',
+                'password' => bcrypt('123456'),
+                'is_parent' => true
+            )
+        );
     }
 
     /**

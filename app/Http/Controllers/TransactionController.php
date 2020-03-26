@@ -20,7 +20,8 @@ class TransactionController extends Controller
         if (Auth::user()->isParent) {
             $transaction = Transaction::find($id);
         } else {
-            $transaction = Transaction::where(['user_id' => Auth::id(), 'id' => $id])->first();
+            //$transaction = Transaction::where(['user_id' => Auth::id(), 'id' => $id])->first();
+            $transaction = Auth::user()->transactions()->find($id);
         }
         if ($transaction) {
             $transaction->delete();
