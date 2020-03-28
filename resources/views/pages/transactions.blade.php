@@ -40,6 +40,7 @@
                                     <th>Coins</th>
                                     <th>User</th>
                                     <th>Value</th>
+                                    <th>Status</th>
                                     <th>Actions</th>
                                 </tr>
                                 </thead>
@@ -66,6 +67,7 @@
                                                 class="img-circle elevation-2" alt="User Image"
                                                 width="40"> {{ $transaction->user->name }}</td>
                                         <td>{{ $transaction->value }} &#8378;</td>
+                                        <td>@if($transaction->isSuccess) <i class="fas fa-check text-green"></i> Success @else <i class="fas fa-times text-red"></i> Failed @endif</td>
                                         <td>
                                             <div class="btn-group">
                                                 <button type="button" class="btn btn-danger"

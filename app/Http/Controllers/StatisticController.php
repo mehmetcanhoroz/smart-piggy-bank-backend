@@ -63,11 +63,17 @@ class StatisticController extends Controller
         $allCountByUnknown = Transaction::all()->sum('unknown_item_count');
         $allCountByCountCoin = Coin::all()->count();
 
+
+        $failedCount = Transaction::where('unknown_item_count', '>', '0')->count();
+        $successCount = Transaction::all()->count() - $failedCount;
+        $allCountByFailed = ['success' => $successCount, 'failed' => $failedCount];
+
         $data = [
             'monthly' => $allCountByMonth->toArray(),
             'daily' => $allCountByDay->toArray(),
             'coin' => $allCountByCoin->toArray(),
-            'coinUnknown' => ['unkown_coin' => $allCountByUnknown, 'coin' => $allCountByCountCoin]
+            'coinUnknown' => ['unknown_coin' => $allCountByUnknown, 'coin' => $allCountByCountCoin],
+            'failed' => $allCountByFailed,
         ];
 
         return view('pages.statistics')->with(['data' => $data]);

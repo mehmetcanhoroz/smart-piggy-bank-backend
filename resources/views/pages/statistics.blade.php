@@ -28,7 +28,7 @@
         <div class="container-fluid">
             <!-- Small boxes (Stat box) -->
             <div class="row">
-                <div class="col-6">
+                <div class="col-4">
                     <div class="card">
                         <div class="card-body">
                             <div class="row">
@@ -44,13 +44,29 @@
                     <!-- /.card -->
                 </div>
                 <!-- /.col -->
-                <div class="col-6">
+                <div class="col-4">
                     <div class="card">
                         <div class="card-body">
                             <div class="row">
                                 <div class="chart">
                                     <!-- PIE CHART -->
                                     <canvas id="pieChartUnknown"
+                                            style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!-- /.col -->
+                <div class="col-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="chart">
+                                    <!-- PIE CHART -->
+                                    <canvas id="pieChartFailed"
                                             style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
                                 </div>
                             </div>
@@ -128,10 +144,24 @@
                 datasets: [
                     {
                         data: [
-                            {{ $data['coinUnknown']['unkown_coin'] }},
+                            {{ $data['coinUnknown']['unknown_coin'] }},
                             {{ $data['coinUnknown']['coin'] }},
                         ],
                         backgroundColor: ['#f39c12', '#3c8dbc', '#d2d6de', '#f56954', '#00a65a', '#00c0ef'],
+                    }
+                ]
+            };
+            var donutDataFailed = {
+                labels: [
+                    'Success Transactions', 'Failed Transactions'
+                ],
+                datasets: [
+                    {
+                        data: [
+                            {{ $data['failed']['success'] }},
+                            {{ $data['failed']['failed'] }},
+                        ],
+                        backgroundColor: ['#00a65a', '#f56954', '#00c0ef', '#3c8dbc', '#f39c12', '#d2d6de'],
                     }
                 ]
             };
@@ -156,7 +186,7 @@
             // Get context with jQuery - using jQuery's .get() method.
             var pieChartCanvasUnknown = $('#pieChartUnknown').get(0).getContext('2d');
             var pieDataUnknown = donutDataUnknown;
-            var pieOptions = {
+            var pieOptionsUnknown = {
                 maintainAspectRatio: false,
                 responsive: true,
             };
@@ -165,7 +195,21 @@
             var pieChartUnknown = new Chart(pieChartCanvasUnknown, {
                 type: 'pie',
                 data: pieDataUnknown,
-                options: pieOptions
+                options: pieOptionsUnknown
+            });
+            // Get context with jQuery - using jQuery's .get() method.
+            var pieChartCanvasFailed = $('#pieChartFailed').get(0).getContext('2d');
+            var pieDataFailed = donutDataFailed;
+            var pieOptionsFailed = {
+                maintainAspectRatio: false,
+                responsive: true,
+            };
+            //Create pie or douhnut chart
+            // You can switch between pie and douhnut using the method below.
+            var pieChartFailed = new Chart(pieChartCanvasFailed, {
+                type: 'pie',
+                data: pieDataFailed,
+                options: pieOptionsFailed
             });
 
 

@@ -41,4 +41,9 @@ class Transaction extends Model
     {
         return $this->coins()->sum('value');
     }
+
+    public function getIsSuccessAttribute()
+    {
+        return $this->unknown_item_count > 0 ? false : true;
+    }
 }
