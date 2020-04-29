@@ -17,7 +17,7 @@ class DemoSeeder extends Seeder
                     'id' => 2,
                     'name' => 'Child User',
                     'email' => 'child@gmail.com',
-                    'password' => bcrypt('123456'),
+                    'password' => bcrypt('123123'),
                     'is_parent' => false
                 ]
             ]
@@ -106,44 +106,52 @@ class DemoSeeder extends Seeder
                     'id' => 1,
                     'transaction_id' => 1,
                     'value' => 0.25,
+                    'created_at' => \Carbon\Carbon::today()
                 ],
                 [
                     'id' => 2,
                     'transaction_id' => 1,
                     'value' => 1,
+                    'created_at' => \Carbon\Carbon::today()
                 ],
 
                 [
                     'id' => 3,
                     'transaction_id' => 2,
                     'value' => 0.10,
+                    'created_at' => \Carbon\Carbon::yesterday()
                 ],
                 [
                     'id' => 4,
                     'transaction_id' => 2,
                     'value' => 0.50,
+                    'created_at' => \Carbon\Carbon::yesterday()
                 ],
 
                 [
                     'id' => 5,
                     'transaction_id' => 3,
                     'value' => 0.01,
+                    'created_at' => \Carbon\Carbon::today()->addDays(-2)
                 ],
                 [
                     'id' => 6,
                     'transaction_id' => 3,
                     'value' => 0.25,
+                    'created_at' => \Carbon\Carbon::today()->addDays(-2)
                 ],
 
                 [
                     'id' => 7,
                     'transaction_id' => 4,
                     'value' => 1,
+                    'created_at' => \Carbon\Carbon::today()->addDays(-3)
                 ],
                 [
                     'id' => 8,
                     'transaction_id' => 4,
                     'value' => 1,
+                    'created_at' => \Carbon\Carbon::today()->addDays(-3)
                 ],
 
 
@@ -166,26 +174,31 @@ class DemoSeeder extends Seeder
                     'id' => 9,
                     'transaction_id' => 5,
                     'value' => 1,
+                    'created_at' => \Carbon\Carbon::today()->addDays(-4)
                 ],
                 [
                     'id' => 10,
                     'transaction_id' => 6,
                     'value' => 0.1,
+                    'created_at' => \Carbon\Carbon::today()->addDays(-5)
                 ],
                 [
                     'id' => 11,
                     'transaction_id' => 7,
                     'value' => 0.25,
+                    'created_at' => \Carbon\Carbon::today()->addDays(-6)
                 ],
                 [
                     'id' => 12,
                     'transaction_id' => 8,
                     'value' => 0.25,
+                    'created_at' => \Carbon\Carbon::today()->addDays(-7)
                 ],
                 [
                     'id' => 13,
                     'transaction_id' => 9,
                     'value' => 0.01,
+                    'created_at' => \Carbon\Carbon::today()->addDays(-7)
                 ],
             ]
         );

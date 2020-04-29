@@ -29,7 +29,7 @@ class CreateUsersTable extends Migration
                     'id' => 1,
                     'name' => 'Parent User',
                     'email' => 'admin@gmail.com',
-                    'password' => bcrypt('123456'),
+                    'password' => bcrypt('123123'),
                     'is_parent' => true
                 ]
             ]

@@ -49,6 +49,12 @@ Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.'], function () {
                 Route::get('/', ['as' => 'index', 'uses' => 'StatisticController@index']);
             });
         });
+
+        Route::group(['prefix' => 'leaderboard', 'as' => 'leaderboard.'], function () {
+            Route::group([], function () {
+                Route::get('/', ['as' => 'index', 'uses' => 'LeaderBoardController@index']);
+            });
+        });
     });
 
     Auth::routes();

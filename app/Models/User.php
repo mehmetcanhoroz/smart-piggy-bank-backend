@@ -52,6 +52,11 @@ class User extends Authenticatable
         return $this->hasManyThrough(Image::class, Transaction::class);
     }
 
+    public function qTotalSaving()
+    {
+        return $this->hasManyThrough(Coin::class, Transaction::class)->sum('value');
+    }
+
     public function getTotalSavingAttribute()
     {
         return $this->coins()->sum('value');
