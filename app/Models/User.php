@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Passport\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, HasApiTokens;
 
     /**
      * The attributes that are mass assignable.
@@ -36,6 +37,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'is_parent' => 'boolean',
     ];
+
+    public function generateToken()
+    {
+        $this->api_token = str_random(60);
+        $this->save();
+
+        return $this->api_token;
+    }
 
     //Add extra attribute
     //    protected $attributes = ['total_saving'];
