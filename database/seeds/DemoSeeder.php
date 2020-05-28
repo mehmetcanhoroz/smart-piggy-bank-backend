@@ -12,6 +12,18 @@ class DemoSeeder extends Seeder
      */
     public function run()
     {
+
+        DB::table('users')->insert([
+                [
+                    'id' => 1,
+                    'name' => 'Parent User',
+                    'email' => 'admin@gmail.com',
+                    'password' => bcrypt('123123'),
+                    'is_parent' => true
+                ]
+            ]
+        );
+
         DB::table('users')->insert([
                 [
                     'id' => 2,
