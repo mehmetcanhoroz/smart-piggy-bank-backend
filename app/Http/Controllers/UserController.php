@@ -10,9 +10,11 @@ class UserController extends Controller
 {
     public function index(Request $request)
     {
-        $users = User::with(['transactions', 'coins'])->get();
-        if ($request->wantsJson())
+        if ($request->wantsJson()) {
+            $users = User::withCount(['transactions', 'coins'])->get();
             return $users;
+        }
+        $users = User::with(['transactions', 'coins'])->get();
         return view('pages.users')->with(['users' => $users]);
     }
 

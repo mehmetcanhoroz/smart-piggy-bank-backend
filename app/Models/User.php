@@ -37,6 +37,11 @@ class User extends Authenticatable
         'is_parent' => 'boolean',
     ];
 
+    //Add extra attribute
+    protected $attributes = ['total_saving'];
+    //Make it available in the json response
+    protected $appends = ['total_saving'];
+
     public function transactions()
     {
         return $this->hasMany(Transaction::class);
