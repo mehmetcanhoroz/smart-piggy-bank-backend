@@ -11,6 +11,7 @@ class UserController extends Controller
     public function index(Request $request)
     {
         if ($request->wantsJson()) {
+            sleep(3);
             $users = User::withCount(['transactions', 'coins'])->get();
             return $users;
         }
