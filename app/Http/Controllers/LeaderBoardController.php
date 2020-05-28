@@ -11,10 +11,10 @@ class LeaderBoardController extends Controller
 {
     public function index()
     {
-        $top7Coins = Transaction::groupBy('user_id')->with('user')->select(['transactions.user_id', DB::raw('COUNT(id) as count')])->where('created_at', '>', Carbon::today()->addDays(-7))->orderByDesc('count')->get();
-        $top30Coins = Transaction::groupBy('user_id')->with('user')->select(['transactions.user_id', DB::raw('COUNT(id) as count')])->where('created_at', '>', Carbon::today()->addDays(-30))->orderByDesc('count')->get();
-        $topYearCoins = Transaction::groupBy('user_id')->with('user')->select(['transactions.user_id', DB::raw('COUNT(id) as count')])->where('created_at', '>', Carbon::createFromDate(Carbon::today()->year, 1, 1))->orderByDesc('count')->get();
-        $topCoins = Transaction::groupBy('user_id')->with('user')->select(['transactions.user_id', DB::raw('COUNT(id) as count')])->orderByDesc('count')->get();
+        $top7Transaction = Transaction::groupBy('user_id')->with('user')->select(['transactions.user_id', DB::raw('COUNT(id) as count')])->where('created_at', '>', Carbon::today()->addDays(-7))->orderByDesc('count')->get();
+        $top30Transaction = Transaction::groupBy('user_id')->with('user')->select(['transactions.user_id', DB::raw('COUNT(id) as count')])->where('created_at', '>', Carbon::today()->addDays(-30))->orderByDesc('count')->get();
+        $topYearTransaction = Transaction::groupBy('user_id')->with('user')->select(['transactions.user_id', DB::raw('COUNT(id) as count')])->where('created_at', '>', Carbon::createFromDate(Carbon::today()->year, 1, 1))->orderByDesc('count')->get();
+        $topTransaction = Transaction::groupBy('user_id')->with('user')->select(['transactions.user_id', DB::raw('COUNT(id) as count')])->orderByDesc('count')->get();
 
         $top7Amount = User::with(['coins' => function ($query) {
             $query->where('coins.created_at', '>', Carbon::today()->addDays(-3));
@@ -31,10 +31,10 @@ class LeaderBoardController extends Controller
         $topAmount = User::with('coins')->get();
 
         return view('pages.leaderboard', [
-            'top7Coins' => $top7Coins,
-            'top30Coins' => $top30Coins,
-            'topYearCoins' => $topYearCoins,
-            'topCoins' => $topCoins,
+            'top7Transaction' => $top7Transaction,
+            'top30Transaction' => $top30Transaction,
+            'topYearTransaction' => $topYearTransaction,
+            'topTransaction' => $topTransaction,
             'top7Amount' => $top7Amount,
             'top30Amount' => $top30Amount,
             'topYearAmount' => $topYearAmount,

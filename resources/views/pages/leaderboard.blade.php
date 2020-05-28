@@ -32,7 +32,7 @@
                 <div class="col-3">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Weekly Total Coins</h3>
+                            <h3 class="card-title">Weekly Total Transaction</h3>
                         </div>
                         <div class="card-body">
                             <table class="table table-striped">
@@ -47,7 +47,7 @@
                                 @php
                                     $count = 0;
                                 @endphp
-                                @foreach($top7Coins as $record)
+                                @foreach($top7Transaction as $record)
                                     @php
                                         $count++
                                     @endphp
@@ -73,7 +73,7 @@
                 <div class="col-3">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Monthly Total Coins</h3>
+                            <h3 class="card-title">Monthly Total Transaction</h3>
                         </div>
                         <div class="card-body">
                             <table class="table table-striped">
@@ -88,7 +88,7 @@
                                 @php
                                     $count = 0;
                                 @endphp
-                                @foreach($top30Coins as $record)
+                                @foreach($top30Transaction as $record)
                                     @php
                                         $count++
                                     @endphp
@@ -113,7 +113,7 @@
                 <div class="col-3">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Yearly Total Coins</h3>
+                            <h3 class="card-title">Yearly Total Transaction</h3>
                         </div>
                         <div class="card-body">
                             <table class="table table-striped">
@@ -128,7 +128,7 @@
                                 @php
                                     $count = 0;
                                 @endphp
-                                @foreach($topYearCoins as $record)
+                                @foreach($topYearTransaction as $record)
                                     @php
                                         $count++
                                     @endphp
@@ -154,7 +154,7 @@
                 <div class="col-3">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Total Coins</h3>
+                            <h3 class="card-title">Total Transaction</h3>
                         </div>
                         <div class="card-body">
                             <table class="table table-striped">
@@ -169,7 +169,7 @@
                                 @php
                                     $count = 0;
                                 @endphp
-                                @foreach($topCoins as $record)
+                                @foreach($topTransaction as $record)
                                     @php
                                         $count++
                                     @endphp

@@ -61,18 +61,24 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('dashboard.transaction_proofs.index') }}" class="nav-link">
+                    <a href="{{ route('dashboard.transactions.fake') }}" class="nav-link">
                         <i class="nav-icon fas fa-image"></i>
                         <p>Transaction Proofs</p>
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a href="{{ route('dashboard.transactions.fake') }}" class="nav-link">
+                        <i class="nav-icon fas fa-plus"></i>
+                        <p>Add Fake Transaction</p>
+                    </a>
+                </li>
+                {{--<li class="nav-item">
                     <a href="/" class="nav-link">
                         <i class="nav-icon fas fa-calendar-alt"></i>
                         <p>Calendar</p>
                         <span class="badge badge-danger right">{{ $calendarCount }}</span>
                     </a>
-                </li>
+                </li>--}}
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('dashboard.logout') }}"
                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">

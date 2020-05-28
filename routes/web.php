@@ -21,6 +21,8 @@ Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.'], function () {
             Route::group([], function () {
                 Route::get('/', ['as' => 'index', 'uses' => 'TransactionController@index']);
                 Route::delete('/{id}', ['as' => 'delete', 'uses' => 'TransactionController@delete'])->where(['id' => '[0-9]+']);
+                Route::get('/fake', ['as' => 'fake', 'uses' => 'TransactionController@fake']);
+                Route::post('/', ['as' => 'store', 'uses' => 'TransactionController@store']);
             });
         });
 
