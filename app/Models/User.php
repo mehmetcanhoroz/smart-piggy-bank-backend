@@ -64,6 +64,6 @@ class User extends Authenticatable
 
     public function getTotalSavingAttribute()
     {
-        return $this->coins()->sum('value');
+        return round($this->coins()->sum('value'), 2);
     }
 }
