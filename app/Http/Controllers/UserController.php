@@ -3,14 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $users = User::with(['transactions', 'coins'])->get();
+        if ($request->wantsJson())
+            return $users;
         return view('pages.users')->with(['users' => $users]);
     }
 
@@ -19,9 +21,9 @@ class UserController extends Controller
         //dd($request);
         $user = null;
         //if (Auth::user()->is_parent) {
-            $user = User::find($id);
+        $user = User::find($id);
         //} else {
-            //return response(['message' => 'You don\'t have permission to delete user!'], 403);
+        //return response(['message' => 'You don\'t have permission to delete user!'], 403);
         //}
         if ($user) {
             if (User::where('is_parent', 1)->get()->count() == 1)
