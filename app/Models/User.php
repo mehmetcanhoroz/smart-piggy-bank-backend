@@ -38,7 +38,7 @@ class User extends Authenticatable
     ];
 
     //Add extra attribute
-    protected $attributes = ['total_saving'];
+    //    protected $attributes = ['total_saving'];
     //Make it available in the json response
     protected $appends = ['total_saving'];
 
