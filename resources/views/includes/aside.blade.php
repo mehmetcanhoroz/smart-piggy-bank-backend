@@ -61,7 +61,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('dashboard.transactions.fake') }}" class="nav-link">
+                    <a href="{{ route('dashboard.transaction_proofs.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-image"></i>
                         <p>Transaction Proofs</p>
                     </a>
