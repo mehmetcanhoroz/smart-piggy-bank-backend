@@ -10,9 +10,12 @@ use Illuminate\Support\Facades\Auth;
 
 class TransactionController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $transactions = Transaction::ofLoggedUser()->with(['user', 'coins'])->get();
+        if ($request->wantsJson()) {
+            return response()->json($transactions, 200);
+        }
         return view('pages.transactions')->with(['transactions' => $transactions]);
     }
 
