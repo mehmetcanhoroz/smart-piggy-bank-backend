@@ -17,7 +17,8 @@ use Illuminate\Support\Facades\Route;
     return $request->user();
 });*/
 Route::group(['middleware' => ['auth:api'], 'as' => 'api.'], function () {
-    Route::get('/users', 'UserController@index')->name('users');
+    Route::get('users', 'UserController@index')->name('users');
+    Route::get('dashboard', 'DashboardController@index')->name('index');
 });
 Route::group(['namespace' => 'Api', 'as' => 'api.'], function () {
 

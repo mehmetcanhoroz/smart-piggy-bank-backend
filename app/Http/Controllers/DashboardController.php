@@ -7,8 +7,6 @@ use App\Models\Transaction;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\View;
 
 class DashboardController extends Controller
 {
@@ -17,14 +15,24 @@ class DashboardController extends Controller
         if ($request->wantsJson()) {
             $userCount = User::all()->count();
             $transactions = Transaction::all();
-            //$transactionCount = Transaction::all()->count();
             $transactionCount = $transactions->count();
-            //$calendarCount = Transaction::all()->where('created_at', Carbon::today())->count();
-            //dd(Carbon::today());
             $calendarCount = $transactions->whereBetween('created_at', [Carbon::today(), Carbon::today()->addDay()])->count();
             $totalSaving = Coin::all()->sum('value');
-            //dd($totalSaving);
 
+            return response()->json([
+                'global' => [
+                    'userCount' => $userCount,
+                    'transactionCount' => $transactionCount,
+                    'calendarCount' => $calendarCount,
+                    'totalSaving' => $totalSaving,
+                ],
+                'user' => [
+                    'transactionCount' => \Illuminate\Support\Facades\Auth::user()->transactions->count(),
+                    'weeklyTransaction' => \Illuminate\Support\Facades\Auth::user()->transactions->whereBetween('created_at', [\Carbon\Carbon::now()->startOfWeek(), \Carbon\Carbon::now()->endOfWeek()])->count(),
+                    'coinCount' => \Illuminate\Support\Facades\Auth::user()->coins->count(),
+                    'totalSaving' => \Illuminate\Support\Facades\Auth::user()->totalSaving,
+                ],
+            ], 200);
             // Sharing is caring
 //            View::share('userCount', $userCount);
 //            View::share('transactionCount', $transactionCount);
