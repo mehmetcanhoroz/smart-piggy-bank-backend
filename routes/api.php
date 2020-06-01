@@ -24,6 +24,7 @@ Route::group(['middleware' => ['auth:api'], 'as' => 'api.'], function () {
 });
 Route::group(['middleware' => ['authforleaderboard'], 'as' => 'api.'], function () {
     Route::get('leaderboard', 'LeaderBoardController@index')->name('leaderBoard');
+    Route::get('statistics', 'StatisticsController@index')->name('statistics');
 });
 Route::group(['namespace' => 'Api', 'as' => 'api.'], function () {
 
