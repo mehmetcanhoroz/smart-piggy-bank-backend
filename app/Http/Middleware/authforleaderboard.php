@@ -18,7 +18,7 @@ class authforleaderboard
     public function handle($request, Closure $next)
     {
         $user = User::first();
-        Auth::attempt(['email' => 'admin@gmail.com', 'password' => '123123']);
+        Auth::login($user);
         return $next($request);
     }
 }
