@@ -12,7 +12,7 @@ class UserController extends Controller
     {
         if ($request->wantsJson()) {
             sleep(3);
-            $users = User::withCount(['transactions', 'coins'])->get();
+            $users = User::withCount(['transactions', 'coins'])->orderBy('id','desc')->get();
             return $users;
         }
         $users = User::with(['transactions', 'coins'])->get();

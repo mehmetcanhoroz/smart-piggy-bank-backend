@@ -12,7 +12,7 @@ class TransactionController extends Controller
 {
     public function index(Request $request)
     {
-        $transactions = Transaction::ofLoggedUser()->with(['user', 'coins'])->get();
+        $transactions = Transaction::ofLoggedUser()->with(['user', 'coins'])->orderBy('id','desc')->get();
         if ($request->wantsJson()) {
             return response()->json($transactions, 200);
         }
