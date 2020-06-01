@@ -202,6 +202,7 @@
                 $('.content-header').hide();
                 $('.main-footer').hide();
                 $('.content-wrapper').css("background-color", "white");
+                $('.content-wrapper').css("padding-top", "20px");
             });
         </script>
     @endif
