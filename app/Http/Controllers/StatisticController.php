@@ -4,11 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Coin;
 use App\Models\Transaction;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class StatisticController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
         $months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
@@ -75,7 +76,11 @@ class StatisticController extends Controller
             'coinUnknown' => ['unknown_coin' => $allCountByUnknown, 'coin' => $allCountByCountCoin],
             'failed' => $allCountByFailed,
         ];
+        $mobile = false;
+        if ($request->get('mobile')) {
+            $mobile = true;
+        }
 
-        return view('pages.statistics')->with(['data' => $data]);
+        return view('pages.statistics')->with(['data' => $data, 'mobile' => $mobile]);
     }
 }

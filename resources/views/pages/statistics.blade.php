@@ -28,7 +28,7 @@
         <div class="container-fluid">
             <!-- Small boxes (Stat box) -->
             <div class="row">
-                <div class="col-4">
+                <div class="col-md-4">
                     <div class="card">
                         <div class="card-body">
                             <div class="row">
@@ -44,7 +44,7 @@
                     <!-- /.card -->
                 </div>
                 <!-- /.col -->
-                <div class="col-4">
+                <div class="col-md-4">
                     <div class="card">
                         <div class="card-body">
                             <div class="row">
@@ -60,7 +60,7 @@
                     <!-- /.card -->
                 </div>
                 <!-- /.col -->
-                <div class="col-4">
+                <div class="col-md-4">
                     <div class="card">
                         <div class="card-body">
                             <div class="row">
@@ -76,7 +76,7 @@
                     <!-- /.card -->
                 </div>
                 <!-- /.col -->
-                <div class="col-6">
+                <div class="col-md-6">
                     <div class="card">
                         <div class="card-body">
                             <div class="row">
@@ -92,7 +92,7 @@
                     <!-- /.card -->
                 </div>
                 <!-- /.col -->
-                <div class="col-6">
+                <div class="col-md-6">
                     <div class="card">
                         <div class="card-body">
                             <div class="row">
@@ -305,4 +305,21 @@
             });
         })
     </script>
+@endpush
+
+
+@push('footer')
+
+    @if($mobile)
+        <script>
+            $(document).ready(function () {
+                $('.main-header').hide();
+                $('.content-header').hide();
+                $('.main-footer').hide();
+                $('.content-wrapper').css("background-color", "white");
+                $('.content-wrapper').css("padding-top", "20px");
+            });
+        </script>
+    @endif
+
 @endpush
