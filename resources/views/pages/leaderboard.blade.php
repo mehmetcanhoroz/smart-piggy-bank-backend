@@ -29,7 +29,7 @@
         <div class="container-fluid">
             <!-- Small boxes (Stat box) -->
             <div class="row">
-                <div class="col-3">
+                <div class="col-md-3">
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Weekly Total Transaction</h3>
@@ -52,7 +52,9 @@
                                         $count++
                                     @endphp
                                     <tr>
-                                        <td><span class="badge {{$count == 1 ? 'bg-success' : ($count == 2 ? 'bg-primary' : ($count == 3 ? 'bg-info' : ''))}}">{{ $count }}</span></td>
+                                        <td><span
+                                                class="badge {{$count == 1 ? 'bg-success' : ($count == 2 ? 'bg-primary' : ($count == 3 ? 'bg-info' : ''))}}">{{ $count }}</span>
+                                        </td>
                                         <td>{{ $record->user->name }}</td>
                                         <td>{{ $record->count }}</td>
                                     </tr>
@@ -67,10 +69,7 @@
                 <!-- /.col -->
 
 
-
-
-
-                <div class="col-3">
+                <div class="col-md-3">
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Monthly Total Transaction</h3>
@@ -93,7 +92,9 @@
                                         $count++
                                     @endphp
                                     <tr>
-                                        <td><span class="badge {{$count == 1 ? 'bg-success' : ($count == 2 ? 'bg-primary' : ($count == 3 ? 'bg-info' : ''))}}">{{ $count }}</span></td>
+                                        <td><span
+                                                class="badge {{$count == 1 ? 'bg-success' : ($count == 2 ? 'bg-primary' : ($count == 3 ? 'bg-info' : ''))}}">{{ $count }}</span>
+                                        </td>
                                         <td>{{ $record->user->name }}</td>
                                         <td>{{ $record->count }}</td>
                                     </tr>
@@ -108,9 +109,7 @@
                 <!-- /.col -->
 
 
-
-
-                <div class="col-3">
+                <div class="col-md-3">
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Yearly Total Transaction</h3>
@@ -133,7 +132,9 @@
                                         $count++
                                     @endphp
                                     <tr>
-                                        <td><span class="badge {{$count == 1 ? 'bg-success' : ($count == 2 ? 'bg-primary' : ($count == 3 ? 'bg-info' : ''))}}">{{ $count }}</span></td>
+                                        <td><span
+                                                class="badge {{$count == 1 ? 'bg-success' : ($count == 2 ? 'bg-primary' : ($count == 3 ? 'bg-info' : ''))}}">{{ $count }}</span>
+                                        </td>
                                         <td>{{ $record->user->name }}</td>
                                         <td>{{ $record->count }}</td>
                                     </tr>
@@ -148,10 +149,7 @@
                 <!-- /.col -->
 
 
-
-
-
-                <div class="col-3">
+                <div class="col-md-3">
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Total Transaction</h3>
@@ -174,7 +172,9 @@
                                         $count++
                                     @endphp
                                     <tr>
-                                        <td><span class="badge {{$count == 1 ? 'bg-success' : ($count == 2 ? 'bg-primary' : ($count == 3 ? 'bg-info' : ''))}}">{{ $count }}</span></td>
+                                        <td><span
+                                                class="badge {{$count == 1 ? 'bg-success' : ($count == 2 ? 'bg-primary' : ($count == 3 ? 'bg-info' : ''))}}">{{ $count }}</span>
+                                        </td>
                                         <td>{{ $record->user->name }}</td>
                                         <td>{{ $record->count }}</td>
                                     </tr>
@@ -194,5 +194,16 @@
 @endsection
 
 @push('footer')
+
+    @if($mobile)
+        <script>
+            $(document).ready(function () {
+                $('.main-header').hide();
+                $('.content-header').hide();
+                $('.main-footer').hide();
+                $('.content-wrapper').css("background-color", "white");
+            });
+        </script>
+    @endif
 
 @endpush

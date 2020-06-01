@@ -5,11 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\Transaction;
 use App\Models\User;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class LeaderBoardController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $top7Transaction = Transaction::groupBy('user_id')->with('user')->select(['transactions.user_id', DB::raw('COUNT(id) as count')])->where('created_at', '>', Carbon::today()->addDays(-7))->orderByDesc('count')->get();
         $top30Transaction = Transaction::groupBy('user_id')->with('user')->select(['transactions.user_id', DB::raw('COUNT(id) as count')])->where('created_at', '>', Carbon::today()->addDays(-30))->orderByDesc('count')->get();
@@ -21,14 +22,19 @@ class LeaderBoardController extends Controller
         }])->get();
 //        $user = $top7Amount->first();
 //        dd($user->coins->sum('value'));
-        $top30Amount = User::whereHas('coins', function($query) {
+        $top30Amount = User::whereHas('coins', function ($query) {
             $query->where('coins.created_at', '>', Carbon::today()->addDays(-30));
         })->get();
-        $topYearAmount = User::whereHas('coins', function($query) {
+        $topYearAmount = User::whereHas('coins', function ($query) {
             $query->where('coins.created_at', '>', Carbon::today()->addDays(-360))->groupBy('transaction_id');
         })->get();
 //        dd($top7Amount);
         $topAmount = User::with('coins')->get();
+
+        $mobile = false;
+        if ($request->get('mobile')) {
+            $mobile = true;
+        }
 
         return view('pages.leaderboard', [
             'top7Transaction' => $top7Transaction,
@@ -39,6 +45,7 @@ class LeaderBoardController extends Controller
             'top30Amount' => $top30Amount,
             'topYearAmount' => $topYearAmount,
             'topAmount' => $topAmount,
+            'mobile' => $mobile,
         ]);
         //dd($top7->first()->user()->first());
     }

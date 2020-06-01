@@ -21,6 +21,7 @@ Route::group(['middleware' => ['auth:api'], 'as' => 'api.'], function () {
     Route::get('dashboard', 'DashboardController@index')->name('index');
     Route::get('transactions', 'TransactionController@index')->name('transactions');
     Route::get('transaction_proofs', 'TransactionProofController@index')->name('transactionProof');
+    Route::get('leaderboard', 'LeaderBoardController@index')->name('leaderBoard');
 });
 Route::group(['namespace' => 'Api', 'as' => 'api.'], function () {
 
