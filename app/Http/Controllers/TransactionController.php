@@ -5,14 +5,16 @@ namespace App\Http\Controllers;
 use App\Models\Coin;
 use App\Models\Transaction;
 use App\Models\User;
+use App\Models\Wishlist;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class TransactionController extends Controller
 {
     public function index(Request $request)
     {
-        $transactions = Transaction::ofLoggedUser()->with(['user', 'coins'])->orderBy('id','desc')->get();
+        $transactions = Transaction::ofLoggedUser()->with(['user', 'coins'])->orderBy('id', 'desc')->get();
         if ($request->wantsJson()) {
             return response()->json($transactions, 200);
         }
@@ -70,6 +72,27 @@ class TransactionController extends Controller
             );
         }
 
+        $wishlist = DB::table('wishlists')->select(['current', 'goal', 'id', 'priority'])->whereRaw('`current` < `goal`')->orderByDesc('priority')->orderByDesc('id')->first();
+        //dd($wishlist);
+        if (isset($wishlist)) {
+            $w = Wishlist::where('id', $wishlist->id)->first();
+//            dd($w);
+            if ($wishlist->current + $transaction->value <= $wishlist->goal) {
+                $w->current = $wishlist->current + $transaction->value;
+                $w->save();
+            }
+            else {
+                $tempMin = ($wishlist->goal - $wishlist->current);
+                $extraSaving = $transaction->value - $tempMin;
+                $w->current = $w->goal;
+                $w->save();
+
+                $wishlist2 = DB::table('wishlists')->select(['current', 'goal', 'id', 'priority'])->whereRaw('`current` < `goal`')->orderByDesc('priority')->orderByDesc('id')->first();
+                $w2 = Wishlist::where('id', $wishlist2->id)->first();
+                $w2->current = $wishlist2->current + $extraSaving;
+                $w2->save();
+            }
+        }
         return redirect()->route('dashboard.transactions.index')->with('message', 'Transaction created!');
     }
 }

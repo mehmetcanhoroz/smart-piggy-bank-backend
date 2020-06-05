@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Wishlist extends Model
 {
+    //Make it available in the json response
+    protected $appends = ['is_done'];
     public function getLeftPercentageAttribute()
     {
         return (int)($this->current / $this->goal * 100);

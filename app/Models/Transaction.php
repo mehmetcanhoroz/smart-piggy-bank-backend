@@ -9,6 +9,7 @@ class Transaction extends Model
 {
     //Make it available in the json response
     protected $appends = ['value', 'is_success'];
+
     public function scopeOfLoggedUser($query, $arg = [])
     {
         $user = Auth::user();

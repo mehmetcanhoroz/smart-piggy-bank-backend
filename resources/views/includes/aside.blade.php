@@ -67,6 +67,12 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a href="{{ route('dashboard.wishlists.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-wallet"></i>
+                        <p>Wishlist</p>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a href="{{ route('dashboard.transactions.fake') }}" class="nav-link">
                         <i class="nav-icon fas fa-plus"></i>
                         <p>Add Fake Transaction</p>
