@@ -43,7 +43,7 @@
                                 <div class="form-group">
                                     <label for="name">Name</label>
                                     <input type="text" class="form-control" id="name" value="{{$user->name}}"
-                                           placeholder="Name" name="name">
+                                           placeholder="Name" name="name" required min="3" minlength="3">
                                 </div>
                                 <div class="form-group">
                                     <label for="password">Password</label>
