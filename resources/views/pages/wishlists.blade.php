@@ -27,11 +27,18 @@
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
-            <!-- Small boxes (Stat box) -->
+            @if(Session::has('message'))
+                <div class="alert alert-success" role="alert">
+                    {{Session::get('message')}}
+                </div>
+        @endif
+        <!-- Small boxes (Stat box) -->
             <div class="row">
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
+                            <a href="{{route('dashboard.wishlists.create')}}" class="btn btn-success float-right">Create
+                                Wishlist</a>
                             <table id="usersDataTable" class="table table-bordered table-striped">
                                 <thead>
                                 <tr>
@@ -50,7 +57,8 @@
                                         <td>{{ $list->name }}</td>
                                         <td>{{ $list->current }}&#8378; of {{ $list->goal }}&#8378; <br>
                                             <div class="progress progress-xs progress-striped active">
-                                                <div class="progress-bar bg-success" style="width: {{ $list->leftPercentage }}%"></div>
+                                                <div class="progress-bar bg-success"
+                                                     style="width: {{ $list->leftPercentage }}%"></div>
                                             </div>
                                         <td>
                                             <div class="btn-group">

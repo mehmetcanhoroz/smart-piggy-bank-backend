@@ -16,6 +16,23 @@ class WishlistController extends Controller
         return view('pages.wishlists')->with(['wishlists' => $lists]);
     }
 
+    public function createShow()
+    {
+        return view('pages.create_wishlists');
+    }
+
+    public function store(Request $request)
+    {
+        $wish = new Wishlist();
+
+        $wish->name = $request->get('name');
+        $wish->goal = $request->get('goal');
+        $wish->priority = $request->get('priority');
+        $wish->save();
+
+        return redirect(route('dashboard.wishlists.index'))->with('message', 'Wishlist is created!');
+    }
+
     public function delete($id)
     {
         $list = Wishlist::find($id);
@@ -26,16 +43,5 @@ class WishlistController extends Controller
         } else {
             return response(['message' => 'Wishlist couldn\'t find, so not deleted!'], 404);
         }
-    }
-
-    public function store(Request $request)
-    {
-        $list = new Wishlist();
-        $list->name = $request->get('name');
-        $list->goal = $request->get('goal');
-        $list->priority = $request->get('priority');
-        $list->save();
-
-        return response(['message' => 'Wishlist are created successfully!'], 200);
     }
 }

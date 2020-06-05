@@ -93,6 +93,6 @@ class TransactionController extends Controller
                 $w2->save();
             }
         }
-        return redirect()->route('dashboard.transactions.index')->with('message', 'Transaction created!');
+        return redirect()->route('dashboard.transactions.index')->with('message', 'Transaction is created!');
     }
 }

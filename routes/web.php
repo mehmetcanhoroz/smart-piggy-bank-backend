@@ -42,6 +42,8 @@ Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.'], function () {
         Route::group(['prefix' => 'wishlists', 'as' => 'wishlists.'], function () {
             Route::group([], function () {
                 Route::get('/', ['as' => 'index', 'uses' => 'WishlistController@index']);
+                Route::get('/create', ['as' => 'create', 'uses' => 'WishlistController@createShow']);
+                Route::post('/create', ['as' => 'store', 'uses' => 'WishlistController@store']);
                 Route::delete('/{id}', ['as' => 'delete', 'uses' => 'WishlistController@delete'])->middleware(['IsParent']);
             });
         });
