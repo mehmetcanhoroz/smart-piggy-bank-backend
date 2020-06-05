@@ -12,11 +12,30 @@ class UserController extends Controller
     {
         if ($request->wantsJson()) {
 //            sleep(3);
-            $users = User::withCount(['transactions', 'coins'])->orderBy('id','desc')->get();
+            $users = User::withCount(['transactions', 'coins'])->orderBy('id', 'desc')->get();
             return $users;
         }
         $users = User::with(['transactions', 'coins'])->get();
         return view('pages.users')->with(['users' => $users]);
+    }
+
+    public function detail(Request $request, $id)
+    {
+        $user = User::where('id', $id)->first();
+        return view('pages.edit_user')->with(['user' => $user]);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $user = User::where('id', $id)->first();
+
+        $user->name = $request->get('name');
+
+        if ($request->get('password')) {
+            $user->password = encrypt($request->password);
+        }
+        $user->save();
+        return redirect(route('dashboard.users.index'))->with(['message' => 'User has been updated!']);
     }
 
     public function delete($id)

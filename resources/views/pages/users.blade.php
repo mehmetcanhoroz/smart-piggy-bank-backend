@@ -26,7 +26,12 @@
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
-            <!-- Small boxes (Stat box) -->
+            @if(Session::has('message'))
+                <div class="alert alert-success" role="alert">
+                    {{Session::get('message')}}
+                </div>
+        @endif
+        <!-- Small boxes (Stat box) -->
             <div class="row">
                 <div class="col-12">
                     <div class="card">
@@ -63,8 +68,9 @@
                                         @if(\Illuminate\Support\Facades\Auth::user()->is_parent)
                                             <td>
                                                 <div class="btn-group">
-                                                    <button type="button" class="btn btn-warning text-white"><i
-                                                            class="fas fa-edit"></i></button>
+                                                    <a href="{{route('dashboard.users.details', $user->id)}}"
+                                                       class="btn btn-warning text-white"><i
+                                                            class="fas fa-edit"></i></a>
                                                     <button type="button" class="btn btn-danger"
                                                             onclick="deleteIt('{{ route('dashboard.users.delete', $user->id) }}')">
                                                         <i
