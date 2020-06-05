@@ -24,13 +24,13 @@ class DashboardController extends Controller
                     'userCount' => $userCount,
                     'transactionCount' => $transactionCount,
                     'calendarCount' => $calendarCount,
-                    'totalSaving' => $totalSaving,
+                    'totalSaving' => round($totalSaving, 2),
                 ],
                 'user' => [
                     'transactionCount' => \Illuminate\Support\Facades\Auth::user()->transactions->count(),
                     'weeklyTransaction' => \Illuminate\Support\Facades\Auth::user()->transactions->whereBetween('created_at', [\Carbon\Carbon::now()->startOfWeek(), \Carbon\Carbon::now()->endOfWeek()])->count(),
                     'coinCount' => \Illuminate\Support\Facades\Auth::user()->coins->count(),
-                    'totalSaving' => \Illuminate\Support\Facades\Auth::user()->totalSaving,
+                    'totalSaving' => round(\Illuminate\Support\Facades\Auth::user()->totalSaving, 2),
                 ],
             ], 200);
             // Sharing is caring
