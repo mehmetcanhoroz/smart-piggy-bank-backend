@@ -9,7 +9,7 @@ class WishlistController extends Controller
 {
     public function index(Request $request)
     {
-        $lists = Wishlist::all();
+        $lists = Wishlist::orderByDesc('id')->get();
         if ($request->wantsJson()) {
             return response()->json($lists, 200);
         }
