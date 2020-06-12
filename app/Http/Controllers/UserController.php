@@ -27,12 +27,21 @@ class UserController extends Controller
 
     public function update(Request $request, $id)
     {
-        $user = User::where('id', $id)->first();
+        $tempUser = $user = User::where('id', $id)->first();
 
         $user->name = $request->get('name');
 
         if ($request->get('password')) {
             $user->password = encrypt($request->password);
+        }
+
+        if ($request->get('parent')) {
+            $user->is_parent = true;
+        } else {
+            if ($tempUser->is_parent && User::where('is_parent', 1)->get()->count() == 1) {
+            } else {
+                $user->is_parent = false;
+            }
         }
         $user->save();
         return redirect(route('dashboard.users.index'))->with(['message' => 'User has been updated!']);

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Coin;
 use App\Models\Transaction;
 use App\Models\User;
+use App\Models\Image;
 use App\Models\Wishlist;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -93,6 +94,15 @@ class TransactionController extends Controller
                 $w2->save();
             }
         }
+		$image = new Image;
+		$image->transaction_id = $transaction->id;
+		
+		if(empty($request->get('image'))) {
+            $image->image = 'https://image.shutterstock.com/image-photo/india-circulating-coins-collection-set-260nw-201607463.jpg';
+		} else {
+			$image->image = $request->get('image');
+		}
+		$image->save();
         return redirect()->route('dashboard.transactions.index')->with('message', 'Transaction is created!');
     }
 }

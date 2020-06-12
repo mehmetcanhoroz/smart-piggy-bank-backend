@@ -70,9 +70,6 @@
                 </div>
             </form>
 
-            <p class="mb-1">
-                <a href="forgot-password.html">I forgot my password</a>
-            </p>
             <p class="mb-0">
                 <a href="/" class="text-center">I have an account</a>
             </p>

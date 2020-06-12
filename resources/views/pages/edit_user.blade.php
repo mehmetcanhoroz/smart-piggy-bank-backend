@@ -50,6 +50,11 @@
                                     <input type="password" class="form-control" id="password"
                                            placeholder="Password" name="password">
                                 </div>
+                                <div class="form-group">
+                                    <label for="parent">Is Parent</label>
+                                    <input type="checkbox" class="" id="parent" {{$user->is_parent ? 'checked' : ''}}
+                                           placeholder="parent" name="parent">
+                                </div>
                             </div>
                             <!-- /.card-body -->
 
